@@ -1,9 +1,10 @@
 "use strict";
 
 import React, { Component } from 'react';
-import { Navigator, Text, View, Image } from 'react-native';
+import { Navigator, StatusBar, Text, View, Image } from 'react-native';
 
 import is from '../style/Index';
+import mc from '../config/Menu';
 
 import News from '../page/News';
 import People from '../page/People';
@@ -20,35 +21,82 @@ class MenuNavigator extends Component {
         console.log('constructor', this.props);
     }
 
+    getScene(component, statusBarHidden){
+        console.log('getScene', statusBarHidden);
+        return (
+            <View style={is.container}>
+                <StatusBar hidden={statusBarHidden} />
+                {component}
+            </View>
+        );
+    }
+
     renderScene(route, navigator){
         console.log('renderScene', route, navigator);
         var id = route.id;
+        var statusBarHidden = route.statusBarHidden;
         this.navigator = navigator;
 
         switch (id)
         {
-            case 'News':
-                return (<News navigator={navigator} />);
-                break;
-            case 'People':
-                return (<People navigator={navigator} />);
-                break;
-            case 'Setting':
-                return (<Setting navigator={navigator} />);
-                break;
+            case 'News': return this.getScene(<News navigator={navigator} />, statusBarHidden);
+            case 'People': return this.getScene(<People navigator={navigator} />, statusBarHidden);
+            case 'Setting': return this.getScene(<Setting navigator={navigator} />, statusBarHidden);
         }
     }
 
-    clickMenu(menu){
-        console.log('clickMenu', menu);
-        this.navigator && this.navigator.push({ id: menu });
+    configureScene(route, routeStack){
+        console.log('configureScene', route, routeStack);
+        return Navigator.SceneConfigs.HorizontalSwipeJump;
+    }
+
+    onDidFocus(route){
+        console.log('onDidFocus', route);
+    }
+
+    onWillFocus(route){
+        console.log('onWillFocus', route);
+    }
+
+    clickMenu(obj){
+        var navigator = this.navigator;
+
+        if(navigator) {
+            var currentRoutes = navigator.getCurrentRoutes();
+            console.log('clickMenu', obj, currentRoutes);
+
+            var existFlag = false;
+            var existRoute = null;
+
+            for (var i in currentRoutes) {
+                var currentRoute = currentRoutes[i];
+                var currentRouteId = currentRoute.id;
+
+                if (currentRouteId == obj.id) {
+                    existFlag = true;
+                    existRoute = currentRoute;
+                    break;
+                }
+            }
+
+            if (existFlag) {
+                navigator.jumpTo(existRoute);
+                StatusBar.setHidden(obj.statusBarHidden);
+            }
+            else {
+                navigator.push(obj);
+            }
+        }
     }
 
     render(){
         return (
-            <Navigator style={is.container} initialRoute={{ id: 'News' }}
+            <Navigator style={is.container} initialRoute={mc.News}
                        renderScene={(route, navigator)=>this.renderScene(route, navigator)}
-                       navigationBar={<MenuView clickMenu={(menu)=>this.clickMenu(menu)} />} />
+                       configureScene={(route, routeStack)=>this.configureScene(route, routeStack)}
+                       onDidFocus={(route)=>this.onDidFocus(route)}
+                       onWillFocus={(route)=>this.onWillFocus(route)}
+                       navigationBar={<MenuView clickMenu={(menu, statusBarHidden)=>this.clickMenu(menu, statusBarHidden)} />} />
         );
     }
 }

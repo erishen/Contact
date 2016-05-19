@@ -7,6 +7,7 @@ import ic from '../config/Image';
 import fc from '../config/Font';
 import cc from '../config/Color';
 import sc from '../config/Size';
+import mc from '../config/Menu';
 import is from '../style/Index';
 
 class MenuView extends Component {
@@ -19,16 +20,16 @@ class MenuView extends Component {
     }
 
     pressNews(){
-        this.props.clickMenu && this.props.clickMenu('News');
+        this.props.clickMenu && this.props.clickMenu(mc.News);
     }
 
     pressPeople(){
         console.log('pressPeople', this.props);
-        this.props.clickMenu && this.props.clickMenu('People');
+        this.props.clickMenu && this.props.clickMenu(mc.People);
     }
 
     pressSetting(){
-        this.props.clickMenu && this.props.clickMenu('Setting');
+        this.props.clickMenu && this.props.clickMenu(mc.Setting);
     }
 
     render(){
