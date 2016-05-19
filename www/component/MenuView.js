@@ -1,7 +1,7 @@
 "use strict";
 
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TouchableOpacity, TabBarIOS } from 'react-native';
 
 import ic from '../config/Image';
 import fc from '../config/Font';
@@ -17,42 +17,57 @@ class MenuView extends Component {
     constructor(props) {
         super(props);
         console.log('constructor', this.props);
+        this.state = {
+            selectedTab: 'News'
+        };
     }
 
-    pressNews(){
-        this.props.clickMenu && this.props.clickMenu(mc.News);
+    pressContacts(){
+        this.props.clickMenu && this.props.clickMenu(mc.Contacts);
+        this.setState({
+            selectedTab: 'Contacts'
+        });
     }
 
-    pressPeople(){
-        console.log('pressPeople', this.props);
-        this.props.clickMenu && this.props.clickMenu(mc.People);
+    pressFavorites(){
+        this.props.clickMenu && this.props.clickMenu(mc.Favorites);
+        this.setState({
+            selectedTab: 'Favorites'
+        });
     }
 
-    pressSetting(){
-        this.props.clickMenu && this.props.clickMenu(mc.Setting);
+    pressMore(){
+        this.props.clickMenu && this.props.clickMenu(mc.More);
+        this.setState({
+            selectedTab: 'More'
+        });
+    }
+
+    renderContent() {
+        return (<View />);
     }
 
     render(){
+        var { selectedTab } = this.state;
+
         return (
-            <View style={is.row}>
-                <TouchableOpacity onPress={()=>this.pressNews()}>
-                    <View style={[is.footMenu, sc.footMenu]}>
-                        <Text style={[fc.medium, cc.footMenu]}>News</Text>
-                    </View>
-                </TouchableOpacity>
+            <TabBarIOS unselectedTintColor="yellow" tintColor="white" barTintColor="darkslateblue">
 
-                <TouchableOpacity onPress={()=>this.pressPeople()}>
-                    <View style={[is.footMenu, sc.footMenu]}>
-                        <Text style={[fc.medium, cc.footMenu]}>People</Text>
-                    </View>
-                </TouchableOpacity>
+                <TabBarIOS.Item title="Contacts" systemIcon="contacts"
+                                selected={selectedTab === 'Contacts'} onPress={()=>this.pressContacts()}>
+                    {this.renderContent()}
+                </TabBarIOS.Item>
 
-                <TouchableOpacity onPress={()=>this.pressSetting()}>
-                    <View style={[is.footMenu, sc.footMenu]}>
-                        <Text style={[fc.medium, cc.footMenu]}>Setting</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
+                <TabBarIOS.Item title="Favorites" systemIcon="favorites"
+                                selected={selectedTab === 'Favorites'} onPress={()=>this.pressFavorites()}>
+                    {this.renderContent()}
+                </TabBarIOS.Item>
+
+                <TabBarIOS.Item title="More" systemIcon="more"
+                                selected={selectedTab === 'More'} onPress={()=>this.pressMore()}>
+                    {this.renderContent()}
+                </TabBarIOS.Item>
+            </TabBarIOS>
         );
     }
 }

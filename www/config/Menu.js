@@ -6,9 +6,9 @@
 import React from 'react';
 
 const Menu = {
-    News: { id: 'News', statusBarHidden: false },
-    People: { id: 'People', statusBarHidden: true },
-    Setting: { id: 'Setting', statusBarHidden: false }
+    Contacts: { id: 'Contacts', statusBarHidden: false }, // 联系人
+    Favorites: { id: 'Favorites', statusBarHidden: true }, // 收藏
+    More: { id: 'More', statusBarHidden: false } // 更多
 };
 
 export default Menu;

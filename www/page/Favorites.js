@@ -9,17 +9,16 @@ import cc from '../config/Color';
 import sc from '../config/Size';
 import is from '../style/Index';
 
-class Setting extends Component {
+class Favorites extends Component {
     render(){
         return (
             <View style={[is.container, sc.content]}>
                 <View style={[is.container, is.footMenu]}>
-                    <Text style={[fc.big, cc.footMenu]}>Setting</Text>
-                    <Image style={ic.setting.style} source={ic.setting.source} />
+                    <Text style={[fc.big, cc.footMenu]}>Favorites</Text>
                 </View>
             </View>
         );
     }
 }
 
-export default Setting;
+export default Favorites;

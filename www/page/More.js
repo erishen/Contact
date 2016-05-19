@@ -9,17 +9,16 @@ import cc from '../config/Color';
 import sc from '../config/Size';
 import is from '../style/Index';
 
-class People extends Component {
+class More extends Component {
     render(){
         return (
             <View style={[is.container, sc.content]}>
                 <View style={[is.container, is.footMenu]}>
-                    <Text style={[fc.big, cc.footMenu]}>People</Text>
-                    <Image style={ic.people.style} source={ic.people.source} />
+                    <Text style={[fc.big, cc.footMenu]}>More</Text>
                 </View>
             </View>
         );
     }
 }
 
-export default People;
+export default More;

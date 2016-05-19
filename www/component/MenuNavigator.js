@@ -6,9 +6,9 @@ import { Navigator, StatusBar, Text, View, Image } from 'react-native';
 import is from '../style/Index';
 import mc from '../config/Menu';
 
-import News from '../page/News';
-import People from '../page/People';
-import Setting from '../page/Setting';
+import Contacts from '../page/Contacts';
+import Favorites from '../page/Favorites';
+import More from '../page/More';
 
 import MenuView from './MenuView';
 
@@ -39,9 +39,9 @@ class MenuNavigator extends Component {
 
         switch (id)
         {
-            case 'News': return this.getScene(<News navigator={navigator} />, statusBarHidden);
-            case 'People': return this.getScene(<People navigator={navigator} />, statusBarHidden);
-            case 'Setting': return this.getScene(<Setting navigator={navigator} />, statusBarHidden);
+            case 'Contacts': return this.getScene(<Contacts navigator={navigator} />, statusBarHidden);
+            case 'Favorites': return this.getScene(<Favorites navigator={navigator} />, statusBarHidden);
+            case 'More': return this.getScene(<More navigator={navigator} />, statusBarHidden);
         }
     }
 
@@ -91,7 +91,7 @@ class MenuNavigator extends Component {
 
     render(){
         return (
-            <Navigator style={is.container} initialRoute={mc.News}
+            <Navigator style={is.container} initialRoute={mc.Contacts}
                        renderScene={(route, navigator)=>this.renderScene(route, navigator)}
                        configureScene={(route, routeStack)=>this.configureScene(route, routeStack)}
                        onDidFocus={(route)=>this.onDidFocus(route)}
