@@ -16,7 +16,6 @@ class MenuView extends Component {
 
     constructor(props) {
         super(props);
-        console.log('constructor', this.props);
         this.state = {
             selectedTab: 'News'
         };
@@ -45,10 +44,6 @@ class MenuView extends Component {
 
     renderContent() {
         return (<View />);
-    }
-
-    onActionSelected(position){
-        console.log('onActionSelected', position);
     }
 
     render(){

@@ -18,7 +18,6 @@ class MenuNavigator extends Component {
 
     constructor(props) {
         super(props);
-        console.log('constructor', this.props);
     }
 
     getScene(component, statusBarHidden){
@@ -32,7 +31,6 @@ class MenuNavigator extends Component {
     }
 
     renderScene(route, navigator){
-        console.log('renderScene', route, navigator);
         var id = route.id;
         var statusBarHidden = route.statusBarHidden;
         this.navigator = navigator;
@@ -46,16 +44,15 @@ class MenuNavigator extends Component {
     }
 
     configureScene(route, routeStack){
-        console.log('configureScene', route, routeStack);
         return Navigator.SceneConfigs.HorizontalSwipeJump;
     }
 
     onDidFocus(route){
-        console.log('onDidFocus', route);
+        console.log('onDidFocus');
     }
 
     onWillFocus(route){
-        console.log('onWillFocus', route);
+        console.log('onWillFocus');
     }
 
     clickMenu(obj){
@@ -63,7 +60,6 @@ class MenuNavigator extends Component {
 
         if(navigator) {
             var currentRoutes = navigator.getCurrentRoutes();
-            console.log('clickMenu', obj, currentRoutes);
 
             var existFlag = false;
             var existRoute = null;
