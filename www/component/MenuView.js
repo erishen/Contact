@@ -1,7 +1,7 @@
 "use strict";
 
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableOpacity, TabBarIOS } from 'react-native';
+import { Text, View, Image, TouchableOpacity, Platform, TabBarIOS } from 'react-native';
 
 import ic from '../config/Image';
 import fc from '../config/Font';
@@ -47,28 +47,36 @@ class MenuView extends Component {
         return (<View />);
     }
 
+    onActionSelected(position){
+        console.log('onActionSelected', position);
+    }
+
     render(){
         var { selectedTab } = this.state;
 
-        return (
-            <TabBarIOS unselectedTintColor="yellow" tintColor="white" barTintColor="darkslateblue">
+        if(Platform.OS == 'ios') {
+            return (
+                <View style={sc.footer}>
+                    <TabBarIOS unselectedTintColor="yellow" tintColor="white" barTintColor="darkslateblue">
 
-                <TabBarIOS.Item title="Contacts" systemIcon="contacts"
-                                selected={selectedTab === 'Contacts'} onPress={()=>this.pressContacts()}>
-                    {this.renderContent()}
-                </TabBarIOS.Item>
+                        <TabBarIOS.Item title="Contacts" systemIcon="contacts"
+                                        selected={selectedTab === 'Contacts'} onPress={()=>this.pressContacts()}>
+                            {this.renderContent()}
+                        </TabBarIOS.Item>
 
-                <TabBarIOS.Item title="Favorites" systemIcon="favorites"
-                                selected={selectedTab === 'Favorites'} onPress={()=>this.pressFavorites()}>
-                    {this.renderContent()}
-                </TabBarIOS.Item>
+                        <TabBarIOS.Item title="Favorites" systemIcon="favorites"
+                                        selected={selectedTab === 'Favorites'} onPress={()=>this.pressFavorites()}>
+                            {this.renderContent()}
+                        </TabBarIOS.Item>
 
-                <TabBarIOS.Item title="More" systemIcon="more"
-                                selected={selectedTab === 'More'} onPress={()=>this.pressMore()}>
-                    {this.renderContent()}
-                </TabBarIOS.Item>
-            </TabBarIOS>
-        );
+                        <TabBarIOS.Item title="More" systemIcon="more"
+                                        selected={selectedTab === 'More'} onPress={()=>this.pressMore()}>
+                            {this.renderContent()}
+                        </TabBarIOS.Item>
+                    </TabBarIOS>
+                </View>
+            );
+        }
     }
 }
 

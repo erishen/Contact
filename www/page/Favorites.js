@@ -12,9 +12,9 @@ import is from '../style/Index';
 class Favorites extends Component {
     render(){
         return (
-            <View style={[is.container, sc.content]}>
-                <View style={[is.container, is.footMenu]}>
-                    <Text style={[fc.big, cc.footMenu]}>Favorites</Text>
+            <View style={[sc.content]}>
+                <View style={[sc.header, cc.head, is.center]}>
+                    <Text style={fc.big}>Favorites</Text>
                 </View>
             </View>
         );

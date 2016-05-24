@@ -12,8 +12,11 @@ const Index = StyleSheet.create({
     row: {
         flexDirection: 'row'
     },
-    footMenu: {
+    center: {
         justifyContent: 'center',
+        alignItems: 'center'
+    },
+    horizontalCenter: {
         alignItems: 'center'
     }
 });

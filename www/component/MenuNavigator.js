@@ -24,7 +24,7 @@ class MenuNavigator extends Component {
     getScene(component, statusBarHidden){
         console.log('getScene', statusBarHidden);
         return (
-            <View style={is.container}>
+            <View>
                 <StatusBar hidden={statusBarHidden} />
                 {component}
             </View>
@@ -91,7 +91,7 @@ class MenuNavigator extends Component {
 
     render(){
         return (
-            <Navigator style={is.container} initialRoute={mc.Contacts}
+            <Navigator initialRoute={mc.Contacts}
                        renderScene={(route, navigator)=>this.renderScene(route, navigator)}
                        configureScene={(route, routeStack)=>this.configureScene(route, routeStack)}
                        onDidFocus={(route)=>this.onDidFocus(route)}

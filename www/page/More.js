@@ -12,9 +12,9 @@ import is from '../style/Index';
 class More extends Component {
     render(){
         return (
-            <View style={[is.container, sc.content]}>
-                <View style={[is.container, is.footMenu]}>
-                    <Text style={[fc.big, cc.footMenu]}>More</Text>
+            <View style={sc.content}>
+                <View style={[sc.header, cc.head, is.center]}>
+                    <Text style={fc.big}>More</Text>
                 </View>
             </View>
         );
