@@ -13,9 +13,7 @@ class More extends Component {
     render(){
         return (
             <View style={sc.content}>
-                <View style={[sc.header, cc.head, is.center]}>
-                    <Text style={fc.big}>More</Text>
-                </View>
+                
             </View>
         );
     }

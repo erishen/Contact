@@ -9,14 +9,14 @@ import { Dimensions } from 'react-native';
 var { width, height } = Dimensions.get('window');
 
 const Size = {
-    content: {  // 内容尺寸(包括顶部)
+    header: {  // 顶部尺寸
         marginTop: 20,
         width: width,
-        height: height - 70
-    },
-    header: {  // 顶部尺寸
-        width: width,
         height: 40
+    },
+    content: {  // 内容尺寸
+        width: width,
+        height: height - 70
     },
     footer: {  // 底部尺寸
         width: width,
@@ -29,6 +29,9 @@ const Size = {
     contactImg: {
         marginLeft: 12,
         marginRight: 12
+    },
+    contactRow: {
+        lineHeight: 20
     }
 };
 

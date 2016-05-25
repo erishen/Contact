@@ -22,6 +22,11 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		345633011CF482850007EBE0 /* libRCTContacts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 345632F71CF482610007EBE0 /* libRCTContacts.a */; };
+		345633641CF5FA1E0007EBE0 /* RCTLocalContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 345633631CF5FA1E0007EBE0 /* RCTLocalContact.m */; };
+		345633651CF5FB140007EBE0 /* RCTLocalContact.h in Resources */ = {isa = PBXBuildFile; fileRef = 345633601CF5F9B00007EBE0 /* RCTLocalContact.h */; };
+		345633661CF5FB140007EBE0 /* RCTLocalContact.m in Resources */ = {isa = PBXBuildFile; fileRef = 345633631CF5FA1E0007EBE0 /* RCTLocalContact.m */; };
+		345633691CF5FDD40007EBE0 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 345633671CF5FDD40007EBE0 /* Contacts.framework */; };
+		3456336A1CF5FDD40007EBE0 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 345633681CF5FDD40007EBE0 /* ContactsUI.framework */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +138,10 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Contact/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		345632F11CF482610007EBE0 /* RCTContacts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTContacts.xcodeproj; path = "../node_modules/react-native-contacts/ios/RCTContacts.xcodeproj"; sourceTree = "<group>"; };
+		345633601CF5F9B00007EBE0 /* RCTLocalContact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTLocalContact.h; sourceTree = "<group>"; };
+		345633631CF5FA1E0007EBE0 /* RCTLocalContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTLocalContact.m; sourceTree = "<group>"; };
+		345633671CF5FDD40007EBE0 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		345633681CF5FDD40007EBE0 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +158,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				345633691CF5FDD40007EBE0 /* Contacts.framework in Frameworks */,
+				3456336A1CF5FDD40007EBE0 /* ContactsUI.framework in Frameworks */,
 				345633011CF482850007EBE0 /* libRCTContacts.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -242,6 +253,7 @@
 		13B07FAE1A68108700A75B9A /* Contact */ = {
 			isa = PBXGroup;
 			children = (
+				345633531CF5F9570007EBE0 /* Module */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -267,6 +279,23 @@
 				345632F71CF482610007EBE0 /* libRCTContacts.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		345633531CF5F9570007EBE0 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				3456335F1CF5F9730007EBE0 /* RCTLocalContact */,
+			);
+			name = Module;
+			sourceTree = "<group>";
+		};
+		3456335F1CF5F9730007EBE0 /* RCTLocalContact */ = {
+			isa = PBXGroup;
+			children = (
+				345633601CF5F9B00007EBE0 /* RCTLocalContact.h */,
+				345633631CF5FA1E0007EBE0 /* RCTLocalContact.m */,
+			);
+			name = RCTLocalContact;
 			sourceTree = "<group>";
 		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
@@ -306,6 +335,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				345633671CF5FDD40007EBE0 /* Contacts.framework */,
+				345633681CF5FDD40007EBE0 /* ContactsUI.framework */,
 				13B07FAE1A68108700A75B9A /* Contact */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ContactTests */,
@@ -375,6 +406,9 @@
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 6QZY934ZW9;
 					};
 				};
 			};
@@ -535,6 +569,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				345633651CF5FB140007EBE0 /* RCTLocalContact.h in Resources */,
+				345633661CF5FB140007EBE0 /* RCTLocalContact.m in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
@@ -574,6 +610,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				345633641CF5FA1E0007EBE0 /* RCTLocalContact.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,6 +678,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -658,6 +696,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

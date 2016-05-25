@@ -3,8 +3,12 @@
 import React, { Component } from 'react';
 import { Navigator, StatusBar, Text, View, Image } from 'react-native';
 
-import is from '../style/Index';
+import ic from '../config/Image';
+import fc from '../config/Font';
+import cc from '../config/Color';
+import sc from '../config/Size';
 import mc from '../config/Menu';
+import is from '../style/Index';
 
 import Contacts from '../page/Contacts';
 import Favorites from '../page/Favorites';
@@ -18,6 +22,9 @@ class MenuNavigator extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            headBarTitle: ''
+        };
     }
 
     getScene(component, statusBarHidden){
@@ -52,7 +59,10 @@ class MenuNavigator extends Component {
     }
 
     onWillFocus(route){
-        console.log('onWillFocus');
+        console.log('onWillFocus', route);
+        this.setState({
+            headBarTitle: route.id
+        });
     }
 
     clickMenu(obj){
@@ -86,13 +96,20 @@ class MenuNavigator extends Component {
     }
 
     render(){
+        var { headBarTitle } = this.state;
+
         return (
-            <Navigator initialRoute={mc.Contacts}
+            <View style={[is.container, cc.container]}>
+                <View style={[sc.header, cc.head, is.center]}>
+                    <Text style={fc.big}>{headBarTitle}</Text>
+                </View>
+                <Navigator initialRoute={mc.Contacts}
                        renderScene={(route, navigator)=>this.renderScene(route, navigator)}
                        configureScene={(route, routeStack)=>this.configureScene(route, routeStack)}
                        onDidFocus={(route)=>this.onDidFocus(route)}
                        onWillFocus={(route)=>this.onWillFocus(route)}
-                       navigationBar={<MenuView clickMenu={(menu, statusBarHidden)=>this.clickMenu(menu, statusBarHidden)} />} />
+                       navigationBar={<MenuView clickMenu={(obj)=>this.clickMenu(obj)} />} />
+            </View>
         );
     }
 }

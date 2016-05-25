@@ -1,9 +1,10 @@
 "use strict";
 
 import React, { Component } from 'react';
-import { Text, View, Image, ListView } from 'react-native';
+import { Text, View, Image, ListView, NativeModules } from 'react-native';
 
 import ReactNativeContacts from 'react-native-contacts';
+var LocalContact = NativeModules.LocalContact;
 
 import ic from '../config/Image';
 import fc from '../config/Font';
@@ -25,6 +26,7 @@ class Contacts extends Component {
 
     componentWillMount(){
         console.log('componentWillMount');
+
         ReactNativeContacts.getAll((err, result)=>{
             if(err && err.type === 'permissionDenied'){
 
@@ -35,6 +37,12 @@ class Contacts extends Component {
                 });
             }
         });
+
+        /*
+        LocalContact.getAll((err, result)=>{
+            console.log('LocalContact_getAll', err, result);
+        });
+        */
     }
 
     renderRow(rowData, sectionID, rowID, highlightRow){
@@ -54,9 +62,6 @@ class Contacts extends Component {
 
         return (
             <View style={[sc.content]}>
-                <View style={[sc.header, cc.head, is.center]}>
-                    <Text style={fc.big}>Contacts</Text>
-                </View>
                 <ListView
                     enableEmptySections={true}
                     dataSource={dataSource}

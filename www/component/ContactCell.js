@@ -10,6 +10,9 @@ import sc from '../config/Size';
 import is from '../style/Index';
 
 class ContactCell extends Component {
+    pressContact(recordID){
+        console.log('pressContact', recordID);
+    }
     render(){
         var { contact, navigator } = this.props;
         console.log('contact', contact);
@@ -17,20 +20,53 @@ class ContactCell extends Component {
         if(contact) {
             var recordID = contact.recordID ? contact.recordID : 0;
             var familyName = contact.familyName ? contact.familyName : '';
+            var middleName = contact.middleName ? contact.middleName : '';
             var givenName = contact.givenName ? contact.givenName : '';
-            var middleName = contact.middleName ? contact.middleName : ' ';
             var phoneNumbers = contact.phoneNumbers ? contact.phoneNumbers : [];
             var emailAddresses = contact.emailAddresses ? contact.emailAddresses : [];
             var thumbnailPath = contact.thumbnailPath ? { uri: contact.thumbnailPath } : ic.people.source;
 
+            // 名字
+            var name = '';
+            if(familyName != '')
+                name += familyName;
+
+            if(middleName != '')
+                name += middleName;
+
+            if(givenName != '')
+                name += givenName;
+
+            // 手机号码
+            var phone = '';
+            var index = 0;
+            for(var i in phoneNumbers)
+            {
+                index++;
+                var phoneNumber = phoneNumbers[i];
+                var number = phoneNumber.number;
+                var label = phoneNumber.label;
+
+                // 只显示前两个手机号码
+                if(index <= 2)
+                    phone += number + ', ';
+                else
+                    break;
+            }
+            phone = phone.substring(0, phone.length-2);
+
             return (
-                <View style={[is.row, sc.contactLine, is.horizontalCenter]}>
-                    <View style={sc.contactImg}>
-                        <Image style={ic.people.style} source={thumbnailPath} />
+                <TouchableOpacity onPress={()=>this.pressContact(recordID)}>
+                    <View style={[is.row, sc.contactLine, is.horizontalCenter]}>
+                        <View style={sc.contactImg}>
+                            <Image style={ic.people.style} source={thumbnailPath} />
+                        </View>
+                        <View>
+                            <Text style={[fc.medium, sc.contactRow]}>{name}</Text>
+                            <Text style={[fc.small, sc.contactRow]}>{phone}</Text>
+                        </View>
                     </View>
-                    <Text>{familyName + ',' + middleName + ', ' + givenName + ', '}</Text>
-                    <Text>{phoneNumbers.length + ' phone, ' + emailAddresses.length + ' email'}</Text>
-                </View>
+                </TouchableOpacity>
             );
         }
         else

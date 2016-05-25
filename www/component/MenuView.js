@@ -53,7 +53,6 @@ class MenuView extends Component {
             return (
                 <View style={sc.footer}>
                     <TabBarIOS unselectedTintColor="yellow" tintColor="white" barTintColor="darkslateblue">
-
                         <TabBarIOS.Item title="Contacts" systemIcon="contacts"
                                         selected={selectedTab === 'Contacts'} onPress={()=>this.pressContacts()}>
                             {this.renderContent()}
