@@ -46,7 +46,9 @@ class MenuView extends Component {
     }
 
     pressMore(){
-        this.props.clickMenu && this.props.clickMenu(mc.More);
+        var More = mc.More;
+        More.passProps = { userId: 1 };
+        this.props.clickMenu && this.props.clickMenu(More);
         this.setState({
             selectedTab: 'More'
         });

@@ -38,12 +38,13 @@ class MenuNavigator extends Component {
         var id = route.id;
         var statusBarHidden = route.statusBarHidden;
         var Content = route.Content;
+        var passProps = route.passProps;
         console.log('getScene', id, statusBarHidden);
 
         return (
             <View>
                 <StatusBar hidden={statusBarHidden} />
-                <Content ref={(e)=>this.getRef(id, e)} navigator={navigator} clickMenu={(obj)=>this.clickMenu(obj)} />
+                <Content ref={(e)=>this.getRef(id, e)} navigator={navigator} {...passProps} clickMenu={(obj)=>this.clickMenu(obj)} />
             </View>
         );
     }
@@ -72,6 +73,7 @@ class MenuNavigator extends Component {
     }
 
     clickMenu(obj){
+        console.log('clickMenu', obj);
         var navigator = this.navigator;
 
         if(navigator) {
