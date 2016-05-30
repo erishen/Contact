@@ -14,6 +14,12 @@ const Size = {
         width: width,
         height: 40
     },
+    headerLeft: {
+        marginLeft: 5
+    },
+    headerRight: {
+        marginRight: 5
+    },
     content: {  // 内容尺寸
         width: width,
         height: height - 70

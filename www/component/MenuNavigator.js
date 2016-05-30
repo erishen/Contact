@@ -15,6 +15,7 @@ import Favorites from '../page/Favorites';
 import More from '../page/More';
 
 import MenuView from './MenuView';
+import HeadBar from './HeadBar';
 
 class MenuNavigator extends Component {
 
@@ -22,32 +23,34 @@ class MenuNavigator extends Component {
 
     constructor(props) {
         super(props);
+        this.ref = [];
         this.state = {
-            headBarTitle: ''
+            routeId: ''
         };
     }
 
-    getScene(component, statusBarHidden){
-        console.log('getScene', statusBarHidden);
+    getRef(id, ref){
+        if(this.ref)
+            this.ref[id] = ref;
+    }
+
+    getScene(route, navigator){
+        var id = route.id;
+        var statusBarHidden = route.statusBarHidden;
+        var Content = route.Content;
+        console.log('getScene', id, statusBarHidden);
+
         return (
             <View>
                 <StatusBar hidden={statusBarHidden} />
-                {component}
+                <Content ref={(e)=>this.getRef(id, e)} navigator={navigator} clickMenu={(obj)=>this.clickMenu(obj)} />
             </View>
         );
     }
 
     renderScene(route, navigator){
-        var id = route.id;
-        var statusBarHidden = route.statusBarHidden;
         this.navigator = navigator;
-
-        switch (id)
-        {
-            case 'Contacts': return this.getScene(<Contacts navigator={navigator} />, statusBarHidden);
-            case 'Favorites': return this.getScene(<Favorites navigator={navigator} />, statusBarHidden);
-            case 'More': return this.getScene(<More navigator={navigator} />, statusBarHidden);
-        }
+        return this.getScene(route, navigator);
     }
 
     configureScene(route, routeStack){
@@ -59,9 +62,12 @@ class MenuNavigator extends Component {
     }
 
     onWillFocus(route){
-        console.log('onWillFocus', route);
+        var { routeId } = this.state;
+        console.log('onWillFocus', route, routeId);
+        this.lastRouteId = routeId;
+
         this.setState({
-            headBarTitle: route.id
+            routeId: route.id
         });
     }
 
@@ -95,20 +101,41 @@ class MenuNavigator extends Component {
         }
     }
 
+    pressLeft(){
+        var { routeId } = this.state;
+        console.log('pressLeft', routeId, this.lastRouteId);
+
+        if(this.ref && this.ref[routeId]) {
+
+            if(this.ref[routeId].onLeft) {
+                this.ref[routeId].onLeft();
+            }
+            else if (this.lastRouteId && this.lastRouteId != '') {
+                this.clickMenu(mc[this.lastRouteId]);
+            }
+        }
+    }
+
+    pressRight(){
+        var { routeId } = this.state;
+        console.log('pressRight', routeId, this.lastRouteId, this.ref);
+
+        if(this.ref && this.ref[routeId] && this.ref[routeId].onRight)
+            this.ref[routeId].onRight();
+    }
+
     render(){
-        var { headBarTitle } = this.state;
+        var { routeId } = this.state;
 
         return (
             <View style={[is.container, cc.container]}>
-                <View style={[sc.header, cc.head, is.center]}>
-                    <Text style={fc.big}>{headBarTitle}</Text>
-                </View>
+                <HeadBar title={routeId} onLeft={()=>this.pressLeft()} onRight={()=>this.pressRight()} />
                 <Navigator initialRoute={mc.Contacts}
                        renderScene={(route, navigator)=>this.renderScene(route, navigator)}
                        configureScene={(route, routeStack)=>this.configureScene(route, routeStack)}
                        onDidFocus={(route)=>this.onDidFocus(route)}
                        onWillFocus={(route)=>this.onWillFocus(route)}
-                       navigationBar={<MenuView clickMenu={(obj)=>this.clickMenu(obj)} />} />
+                       navigationBar={<MenuView menu={routeId} clickMenu={(obj)=>this.clickMenu(obj)} />} />
             </View>
         );
     }

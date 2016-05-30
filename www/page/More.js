@@ -10,6 +10,10 @@ import sc from '../config/Size';
 import is from '../style/Index';
 
 class More extends Component {
+    onRight(){
+        console.log('onRight');
+    }
+
     render(){
         return (
             <View style={sc.content}>

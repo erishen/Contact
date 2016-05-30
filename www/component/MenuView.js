@@ -16,9 +16,19 @@ class MenuView extends Component {
 
     constructor(props) {
         super(props);
+
+        var { menu } = this.props;
+
         this.state = {
-            selectedTab: 'News'
+            selectedTab: menu
         };
+    }
+
+    componentWillReceiveProps(nextProps){
+        console.log('componentWillReceiveProps', nextProps);
+        this.setState({
+            selectedTab: nextProps.menu
+        });
     }
 
     pressContacts(){

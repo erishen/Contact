@@ -10,6 +10,7 @@ import ic from '../config/Image';
 import fc from '../config/Font';
 import cc from '../config/Color';
 import sc from '../config/Size';
+import mc from '../config/Menu';
 import is from '../style/Index';
 
 import ContactCell from '../component/ContactCell';
@@ -43,6 +44,15 @@ class Contacts extends Component {
             console.log('LocalContact_getAll', err, result);
         });
         */
+    }
+
+    onLeft(){
+        console.log('onLeft');
+    }
+
+    onRight(){
+        console.log('onRight');
+        this.props.clickMenu && this.props.clickMenu(mc.Favorites);
     }
 
     renderRow(rowData, sectionID, rowID, highlightRow){

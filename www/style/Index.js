@@ -12,9 +12,16 @@ const Index = StyleSheet.create({
     row: {
         flexDirection: 'row'
     },
+    left: {
+        justifyContent: 'center'
+    },
     center: {
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    right: {
+        justifyContent: 'center',
+        alignItems: 'flex-end'
     },
     horizontalCenter: {
         alignItems: 'center'
